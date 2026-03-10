@@ -63,3 +63,36 @@
       pattern: "\\b(?:I|me|my|mine|myself)\\b"
       flags: "g"
     message: "First-person singular detected. Consider using 'we' for academic writing."
+
+- id: lang-weak-sentence-opener
+  category: language
+  name: "Avoid Weak Sentence Openers"
+  description: "Do not start sentences with 'This is', 'It is', or 'There are'."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "WEAK_IT_IS"
+      - "IT_IS"
+    fallback_regex:
+      pattern: "(?:^|(?<=[.!?]\\s{1,3}))(This is|It is|It was|It has|There are|There is|There were|There was)\\b"
+      flags: "gi"
+    message: "Weak sentence opener detected. Rewrite to lead with the subject or action."
+
+- id: lang-sentence-starts-with-number
+  category: language
+  name: "Sentence Starts with Number"
+  description: "Do not begin a sentence with a numeral; spell it out or rewrite."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "SENT_START_NUM"
+    fallback_regex:
+      pattern: "(?:^|(?<=[.!?]\\s{1,3}))\\d"
+      flags: "gm"
+    message: "Sentence starts with a numeral. Spell out the number or restructure the sentence."

@@ -100,6 +100,8 @@ check:
 | `lang-hedge-words` | language | extension |
 | `lang-sentence-length` | language | extension |
 | `lang-first-person-singular` | language | extension |
+| `lang-weak-sentence-opener` | language | extension |
+| `lang-sentence-starts-with-number` | language | extension |
 | `comp-acronym-first-use` | completeness | both |
 | `comp-label-referenced` | completeness | both |
 | `comp-figure-referenced` | completeness | both |
