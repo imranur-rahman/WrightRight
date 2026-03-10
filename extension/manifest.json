@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "WriteRight",
+  "version": "1.0.0",
+  "description": "Enforce custom academic writing policies on Overleaf",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "options/options.html",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.overleaf.com/*",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.overleaf.com/project/*"],
+      "js": [
+        "src/generated-rules.js",
+        "src/utils/latex-parse.js",
+        "src/extractors/codemirror.js",
+        "src/checks/structural.js",
+        "src/checks/formatting.js",
+        "src/checks/completeness.js",
+        "src/checks/languagetool.js",
+        "src/checker.js",
+        "src/ui/toolbar-button.js",
+        "src/ui/sidebar.js",
+        "src/ui/annotations.js",
+        "src/content.js"
+      ],
+      "css": [
+        "src/ui/writeright.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

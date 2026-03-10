@@ -1,0 +1,59 @@
+- id: comp-acronym-first-use
+  category: completeness
+  name: "Acronym First Use"
+  description: "Acronyms must be defined on first use with their full form."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: document
+    required_macro: "\\\\(?:ac|acf|acrfull|gls)\\s*\\{|\\([A-Z]{2,6}\\)"
+    cross_reference:
+      label_pattern: "\\(([A-Z]{2,6})\\)"
+      ref_pattern: "\\b([A-Z]{2,6})\\b"
+
+- id: comp-label-referenced
+  category: completeness
+  name: "Label Referenced"
+  description: "Every \\label must be referenced by at least one \\ref or \\eqref."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: document
+    required_macro: "\\\\ref\\s*\\{|\\\\eqref\\s*\\{|\\\\autoref\\s*\\{|\\\\cref\\s*\\{"
+    cross_reference:
+      label_pattern: "\\\\label\\{([^}]+)\\}"
+      ref_pattern: "\\\\(?:ref|eqref|autoref|cref|Cref)\\{([^}]+)\\}"
+
+- id: comp-figure-referenced
+  category: completeness
+  name: "Figure Referenced"
+  description: "Every figure must be referenced in the text."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: figure
+    required_macro: "\\\\label\\s*\\{"
+    cross_reference:
+      label_pattern: "\\\\label\\{(fig:[^}]+)\\}"
+      ref_pattern: "\\\\(?:ref|autoref|cref|Cref)\\{(fig:[^}]+)\\}"
+
+- id: comp-table-referenced
+  category: completeness
+  name: "Table Referenced"
+  description: "Every table must be referenced in the text."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: table
+    required_macro: "\\\\label\\s*\\{"
+    cross_reference:
+      label_pattern: "\\\\label\\{(tab:[^}]+)\\}"
+      ref_pattern: "\\\\(?:ref|autoref|cref|Cref)\\{(tab:[^}]+)\\}"

@@ -1,0 +1,65 @@
+- id: lang-passive-voice
+  category: language
+  name: "Avoid Passive Voice"
+  description: "Prefer active voice over passive voice in academic writing."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "EN_A_VS_AN"
+      - "PASSIVE_VOICE"
+    fallback_regex:
+      pattern: "\\b(?:is|are|was|were|be|been|being)\\s+\\w+ed\\b"
+      flags: "gi"
+    message: "Possible passive voice detected. Consider rewriting in active voice."
+
+- id: lang-hedge-words
+  category: language
+  name: "Avoid Hedge Words"
+  description: "Avoid vague hedge words that weaken academic arguments."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "WEAK_WORDS"
+    fallback_regex:
+      pattern: "\\b(?:seems?|appears?|might|perhaps|probably|possibly|somewhat|fairly|rather|quite|relatively|generally|usually|typically|often|sometimes|certain(?:ly)?|clearly|obviously|basically|essentially|virtually|nearly|almost|mostly|largely)\\b"
+      flags: "gi"
+    message: "Hedge word detected. Consider using more precise language."
+
+- id: lang-sentence-length
+  category: language
+  name: "Sentence Length"
+  description: "Sentences should not exceed 40 words for clarity."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "TOO_LONG_SENTENCE"
+    fallback_regex:
+      pattern: null
+      flags: "gi"
+    word_limit: 40
+    message: "Sentence exceeds 40 words. Consider splitting it."
+
+- id: lang-first-person-singular
+  category: language
+  name: "Avoid First-Person Singular"
+  description: "Prefer 'we' over 'I' in academic papers with multiple authors."
+  severity: warning
+  enabled: true
+  scope: extension
+  check:
+    type: languagetool
+    languagetool_rule_ids:
+      - "I_LOWERCASE"
+    fallback_regex:
+      pattern: "\\b(?:I|me|my|mine|myself)\\b"
+      flags: "g"
+    message: "First-person singular detected. Consider using 'we' for academic writing."

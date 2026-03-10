@@ -1,0 +1,46 @@
+{
+  "name": "writeright",
+  "version": "1.0.0",
+  "description": "Enforce custom academic writing policies for LaTeX/Overleaf users",
+  "scripts": {
+    "validate": "node translators/schema-validate.js",
+    "build:extension": "node translators/to-extension.js",
+    "build:latex": "node translators/to-latex.js",
+    "build": "npm run validate && npm run build:extension && npm run build:latex",
+    "test": "jest",
+    "watch": "nodemon --watch policies/ --exec 'npm run build'"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "nodemon": "^3.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "projects": [
+      {
+        "displayName": "node",
+        "testEnvironment": "node",
+        "testMatch": [
+          "**/tests/policies/**/*.test.js",
+          "**/tests/translators/**/*.test.js",
+          "**/tests/latex/**/*.test.js"
+        ]
+      },
+      {
+        "displayName": "jsdom",
+        "testEnvironment": "jsdom",
+        "testMatch": [
+          "**/tests/extension/**/*.test.js"
+        ]
+      }
+    ]
+  }
+}

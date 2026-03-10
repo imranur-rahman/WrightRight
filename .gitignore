@@ -1,0 +1,12 @@
+node_modules/
+*.log
+.DS_Store
+extension/src/generated-rules.js
+latex/writeright.sty
+*.aux
+*.log
+*.out
+*.pdf
+*.synctex.gz
+coverage/
+.nyc_output/

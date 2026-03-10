@@ -1,0 +1,75 @@
+- id: fmt-figure-needs-caption
+  category: formatting
+  name: "Figure Needs Caption"
+  description: "Every figure environment must have a \\caption command."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: figure
+    required_macro: "\\\\caption\\s*\\{"
+
+- id: fmt-table-needs-caption
+  category: formatting
+  name: "Table Needs Caption"
+  description: "Every table environment must have a \\caption command."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: macro-presence
+    environment: table
+    required_macro: "\\\\caption\\s*\\{"
+
+- id: fmt-label-prefix-figure
+  category: formatting
+  name: "Figure Label Prefix"
+  description: "Labels inside figure environments must use the fig: prefix."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: regex
+    pattern: "\\\\begin\\{figure[^}]*\\}[\\s\\S]*?\\\\label\\{(?!fig:)[^}]+\\}[\\s\\S]*?\\\\end\\{figure\\}"
+    flags: "g"
+    message: "Figure label does not use fig: prefix"
+
+- id: fmt-label-prefix-table
+  category: formatting
+  name: "Table Label Prefix"
+  description: "Labels inside table environments must use the tab: prefix."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: regex
+    pattern: "\\\\begin\\{table[^}]*\\}[\\s\\S]*?\\\\label\\{(?!tab:)[^}]+\\}[\\s\\S]*?\\\\end\\{table\\}"
+    flags: "g"
+    message: "Table label does not use tab: prefix"
+
+- id: fmt-label-prefix-section
+  category: formatting
+  name: "Section Label Prefix"
+  description: "Labels following section commands must use the sec: prefix."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: regex
+    pattern: "\\\\(?:sub)*section\\*?\\{[^}]+\\}(?:(?!\\\\begin\\{)[\\s\\S]){0,200}?\\\\label\\{(?!sec:)[^}]+\\}"
+    flags: "g"
+    message: "Section label does not use sec: prefix"
+
+- id: fmt-label-prefix-equation
+  category: formatting
+  name: "Equation Label Prefix"
+  description: "Labels inside equation environments must use the eq: prefix."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: regex
+    pattern: "\\\\begin\\{(?:equation|align|gather|multline)[^}]*\\}[\\s\\S]*?\\\\label\\{(?!eq:)[^}]+\\}[\\s\\S]*?\\\\end\\{(?:equation|align|gather|multline)\\}"
+    flags: "g"
+    message: "Equation label does not use eq: prefix"

@@ -1,0 +1,49 @@
+% Test file for writeright.sty — expects specific Package Warnings
+% Run with pdflatex twice to ensure two-pass completeness checks work
+
+\documentclass{article}
+\usepackage{writeright}
+
+\title{Test Document for WriteRight}
+\author{Test Author}
+
+\begin{document}
+
+% Missing abstract → [struct-required-abstract]
+% Missing conclusion → [struct-required-conclusion]
+
+\section{Introduction}
+\label{method-no-prefix}
+% ↑ [fmt-label-prefix-section]: label doesn't start with sec:
+
+Some text here.
+
+\begin{figure}[t]
+  \centering
+  % Missing \caption → [fmt-figure-needs-caption]
+  \label{wrongfig}
+  % ↑ [fmt-label-prefix-figure]: doesn't start with fig:
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  % Missing \caption → [fmt-table-needs-caption]
+  \label{wrongtab}
+  % ↑ [fmt-label-prefix-table]: doesn't start with tab:
+  \begin{tabular}{l}
+    x \\
+  \end{tabular}
+\end{table}
+
+\begin{equation}
+  x = 1
+  \label{bad-eq}
+  % ↑ [fmt-label-prefix-equation]: doesn't start with eq:
+\end{equation}
+
+% References section present (avoids [struct-required-references])
+\begin{thebibliography}{9}
+\bibitem{ref1} A reference.
+\end{thebibliography}
+
+\end{document}

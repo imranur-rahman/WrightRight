@@ -1,0 +1,77 @@
+- id: struct-required-abstract
+  category: structural
+  name: "Abstract Required"
+  description: "Academic papers must include an abstract section."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: structure
+    required_sections:
+      - pattern: "\\\\begin\\{abstract\\}|\\\\section\\*?\\{Abstract\\}"
+        label: Abstract
+    order: null
+
+- id: struct-required-introduction
+  category: structural
+  name: "Introduction Required"
+  description: "Academic papers must include an introduction section."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: structure
+    required_sections:
+      - pattern: "\\\\section\\*?\\{Introduction\\}"
+        label: Introduction
+    order: null
+
+- id: struct-required-conclusion
+  category: structural
+  name: "Conclusion Required"
+  description: "Academic papers must include a conclusion section."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: structure
+    required_sections:
+      - pattern: "\\\\section\\*?\\{Conclusion[s]?\\}"
+        label: Conclusion
+    order: null
+
+- id: struct-required-references
+  category: structural
+  name: "References Required"
+  description: "Academic papers must include a references or bibliography section."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: structure
+    required_sections:
+      - pattern: "\\\\begin\\{thebibliography\\}|\\\\bibliography\\{|\\\\printbibliography|\\\\section\\*?\\{References\\}"
+        label: References
+    order: null
+
+- id: struct-abstract-before-intro
+  category: structural
+  name: "Abstract Before Introduction"
+  description: "The abstract must appear before the introduction."
+  severity: warning
+  enabled: true
+  scope: both
+  check:
+    type: structure
+    required_sections:
+      - pattern: "\\\\begin\\{abstract\\}|\\\\section\\*?\\{Abstract\\}"
+        label: Abstract
+      - pattern: "\\\\section\\*?\\{Introduction\\}"
+        label: Introduction
+    order:
+      before:
+        pattern: "\\\\begin\\{abstract\\}|\\\\section\\*?\\{Abstract\\}"
+        label: Abstract
+      after:
+        pattern: "\\\\section\\*?\\{Introduction\\}"
+        label: Introduction

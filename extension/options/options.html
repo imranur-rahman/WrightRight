@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WriteRight Options</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      color: #202124;
+      background: #fff;
+      max-width: 520px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: #5f6368;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #5f6368;
+      margin: 20px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: #5f6368;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="url"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition: border-color 0.15s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+
+    .btn-row {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    button[type="submit"] {
+      padding: 8px 20px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button[type="submit"]:hover {
+      background: #1557b0;
+    }
+
+    #save-status {
+      font-size: 13px;
+      color: #1e8e3e;
+      display: none;
+    }
+
+    .self-host-note {
+      background: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #5f6368;
+      margin-top: 12px;
+    }
+
+    .self-host-note code {
+      background: #e8eaed;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>WriteRight</h1>
+  <p class="subtitle">Academic writing policy enforcement for Overleaf</p>
+
+  <form id="options-form">
+    <div class="section-title">LanguageTool Configuration</div>
+
+    <div class="field">
+      <label for="lt-endpoint">Endpoint URL</label>
+      <div class="field-hint">API endpoint for LanguageTool checks. Use the public API or your self-hosted instance.</div>
+      <input
+        type="url"
+        id="lt-endpoint"
+        name="lt-endpoint"
+        placeholder="https://api.languagetool.org/v2/check"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+
+    <div class="field">
+      <label for="lt-username">API Username <span style="font-weight:400;color:#5f6368">(optional, for Premium)</span></label>
+      <input
+        type="text"
+        id="lt-username"
+        name="lt-username"
+        placeholder="your@email.com"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+
+    <div class="field">
+      <label for="lt-apikey">API Key <span style="font-weight:400;color:#5f6368">(optional, for Premium)</span></label>
+      <input
+        type="password"
+        id="lt-apikey"
+        name="lt-apikey"
+        placeholder="Leave blank for free/anonymous tier"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="self-host-note">
+      <strong>Self-hosting LanguageTool:</strong> LanguageTool is open-source (LGPL).
+      Run it locally with:<br>
+      <code>java -jar LanguageTool-*.jar --http --port 8081</code><br>
+      Then set the endpoint to <code>http://localhost:8081/v2/check</code>.
+      No API key required for self-hosted instances.
+    </div>
+
+    <div class="btn-row">
+      <button type="submit">Save Settings</button>
+      <span id="save-status">&#x2713; Saved</span>
+    </div>
+  </form>
+
+  <script src="options.js"></script>
+</body>
+</html>

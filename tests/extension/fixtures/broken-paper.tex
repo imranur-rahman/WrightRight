@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{writeright}
+
+\title{A Broken Paper with Policy Violations}
+\author{I wrote this myself}
+
+\begin{document}
+
+% VIOLATION: struct-required-abstract — no abstract
+% VIOLATION: struct-abstract-before-intro — no abstract at all
+
+\section{Introduction}
+% No \label — but that's OK per policy
+I wrote this paper to demonstrate all violations.
+I believe passive voice is sometimes used by researchers when they want to avoid responsibility.
+The results were obtained by running several experiments.
+Perhaps it might be somewhat possible that certain findings could potentially be seen as relevant.
+This sentence is extremely long and contains many words and clauses and subclauses and it goes on and on well past the forty word limit that we set for our policy checks to ensure that sentences are kept concise.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.8\linewidth]{example-image}
+  % VIOLATION: fmt-figure-needs-caption — no \caption
+  \label{wrongprefix}
+  % VIOLATION: fmt-label-prefix-figure — label doesn't start with fig:
+\end{figure}
+% VIOLATION: comp-figure-referenced — fig:orphan label never \ref'd (see below)
+
+% A properly-prefixed figure label that is never referenced
+\begin{figure}[b]
+  \centering
+  \caption{An orphaned figure.}
+  \label{fig:orphan}
+  % VIOLATION: comp-figure-referenced — fig:orphan is never \ref'd in the text
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  % VIOLATION: fmt-table-needs-caption — no \caption
+  \label{also-wrong}
+  % VIOLATION: fmt-label-prefix-table — label doesn't start with tab:
+  \begin{tabular}{lcc}
+    \hline
+    A & B & C \\
+    \hline
+    1 & 2 & 3 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+% A properly-prefixed table label that is never referenced
+\begin{table}[b]
+  \centering
+  \caption{An orphaned table.}
+  \label{tab:orphan}
+  % VIOLATION: comp-table-referenced — tab:orphan is never \ref'd in the text
+  \begin{tabular}{l}
+    x \\
+  \end{tabular}
+\end{table}
+
+\section{Method}
+% VIOLATION: fmt-label-prefix-section — label doesn't start with sec:
+\label{method-section}
+
+We describe our method.
+
+\begin{equation}
+  x^2 + y^2 = z^2
+  \label{wrong-eq-label}
+  % VIOLATION: fmt-label-prefix-equation — doesn't start with eq:
+\end{equation}
+
+See~\ref{wrong-eq-label} for the equation.
+
+% VIOLATION: comp-acronym-first-use — NLP used before defined
+We use NLP for text analysis.
+Then we use natural language processing (NLP) to parse sentences.
+
+% No Conclusion section — VIOLATION: struct-required-conclusion
+% No References section — VIOLATION: struct-required-references
+
+\end{document}

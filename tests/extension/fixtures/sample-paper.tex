@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{writeright}
+
+\title{A Well-Formed Sample Paper}
+\author{Alice Smith and Bob Jones}
+
+\begin{document}
+
+\begin{abstract}
+This paper presents a study of academic writing policies. We propose a framework for
+automated enforcement of writing conventions in LaTeX documents.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+We investigate the problem of academic writing policy enforcement in Section~\ref{sec:method}.
+Our method automatically detects violations at compile time.
+Natural language processing (NLP) tools assist in language checks.
+We evaluate our approach on a corpus of academic papers.
+
+\section{Method}
+\label{sec:method}
+We describe our approach in this section; see also Section~\ref{sec:results}.
+The framework consists of two components: a Chrome extension and a LaTeX package.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.8\linewidth]{example-image}
+  \caption{Architecture of the WriteRight system.}
+  \label{fig:architecture}
+\end{figure}
+
+As shown in Figure~\ref{fig:architecture}, the system has two main parts.
+
+\begin{table}[t]
+  \centering
+  \caption{Comparison of policy enforcement methods.}
+  \label{tab:comparison}
+  \begin{tabular}{lcc}
+    \hline
+    Method & Speed & Accuracy \\
+    \hline
+    Manual & Slow & High \\
+    Automated & Fast & Medium \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{tab:comparison} shows performance comparisons.
+
+\section{Results}
+\label{sec:results}
+We evaluate our method on 50 papers; see Section~\ref{sec:conclusion} for discussion.
+
+\begin{equation}
+  F_1 = \frac{2 \cdot P \cdot R}{P + R}
+  \label{eq:f1}
+\end{equation}
+
+We compute the $F_1$ score using Equation~\ref{eq:f1}.
+
+\section{Conclusion}
+\label{sec:conclusion}
+We presented WriteRight, a system for enforcing academic writing policies.
+This extends the work of Section~\ref{sec:intro}.
+
+\begin{thebibliography}{9}
+\bibitem{knuth}
+  Donald Knuth, \textit{The \TeX book}, Addison-Wesley, 1984.
+\end{thebibliography}
+
+\end{document}
